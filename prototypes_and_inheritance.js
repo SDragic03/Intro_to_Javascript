@@ -6,6 +6,7 @@
 
 // Example - ARRAY Prototype, STRING Prototype, NUMBER Prototype, FUNCTION Prototype
 
+
 // Prototype chain:
 
 // OBJECT PROTOTYPE - contains hasOwnProperty() so it lets the string calling it use it
@@ -13,6 +14,7 @@
 // STRING PROTOTYPE - does not contain hasOwnProperty() so it asks its parent
 // ^
 var myString = "I am secretly a child of the String prototype";
+
 myString.hasOwnProperty();
 
 // OBJECT PROTOTYPE - The prototype chain stopped because function stopped at the STRING PROTOTYPE
@@ -67,6 +69,10 @@ var a = [3, "blind", "mice"];
 
 a.valueOf(); // returns [ 3, "blind", "mice" ]
 
-var Tornado = function() {
+var Tornado = function(category, affectedAreas, windGuest) {
+    this.category = category;
+    this.affectedAreas = affectedAreas;
+    this.windGuest = windGuest;
+};
 
-}
+var cities = [["Kansas City", 464310], ["Topeka", 127939]]
