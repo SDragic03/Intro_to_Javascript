@@ -48,5 +48,14 @@
 // Spaces and any non-alphabetic characters are counted too
 "One Fish, Two Fish, Red Fish, Blue Fish".length // = 39
 
+// Comparing string lengths
+var longWordOne = "long word";
+var longWordTwo = "super long word";
 
+longWordOne.length > longWordTwo.length // = false
+
+// Finding specific characters within strings
+var sentence = "Antidisestablishmentarianism is fun to say!";
+
+sentence.charAt(11); // = b
 

@@ -1,3 +1,7 @@
+// Variables are essentially the foundation of programming.
+// They help us organize our data
+// Using variables we are able to create powerful, complex and flexible messages
+
 // Storing values
 
 // javascript uses variables to store and manage data
@@ -41,15 +45,12 @@ trainWhistles *= 2;
 // All of our trains have 60 whistles!
 
 "But the Pollack 9000 has " + (trainWhistles + 3) + "!";
-
 // But the Pollack 9000 has 63!
 
 var pollack9000 = trainWhistles + 3;
 
 "But the Pollack 9000 has " + pollack9000 + "!";
-
 // But the Pollack 9000 has 66!
-
 
 // Incrementing and Decrementing - simple syntax for increasing or decreasing variable values by 1
 
@@ -59,6 +60,14 @@ trainWhistles++;
 trainWhistles--;
 // 60
 
+// More examples
+
+var trainsOperational = 10;
+var totalTrains = 12;
+
+var operationalStatus = " trains are operational today."
+
+trainsOperational + " out of " + totalTrains + operationalStatus;
 
 
 
