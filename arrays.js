@@ -18,11 +18,7 @@ vehicles.unshift("Ford"); // Adding Ford to the front of the array
 
 vehicles.push('General Motors'); // ["Ford", "Chevrolet", "BMW", "General Motors"]
 
-let vehiclePosition = vehicles.indexOf('General Motors'); // finding the index of an
-                                                          // item in the array
-                                                          // 3
-
-let startingPosition = vehicle.indexOf("BWM"); // 2
+let startingPosition = vehicles.indexOf("BWM"); // 2
 let removeVehicle = vehicles.splice(startingPosition, 2); // removing 2 items from
                                                           // the startingPosition 
                                                           // onwards to the end
