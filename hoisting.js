@@ -1,77 +1,41 @@
-/**
- * Created by srddrag on 7/6/17.
- */
+// Hoisting - variables and function declarations are moved to the top of their scope before code execution
+    // hosting only moves the declarations, assignments are left in place
 
-// Hoisting - program load order - ensuring that every line of code can execute when its needed
+console.log(typeof undefinedVariable); // undefined
 
-function getMysteryNumber() {
+console.log(undefinedVariable); // undefined
 
-    function chooseMystery() {
-        return 12;
-    }
+// Declaration
+let declaredVariable;
 
-    return chooseMystery();
+// Initialisation
+declaredVariable = 5;
 
-    function chooseMystery() {
-        return 7;
-    }
+// Usage
+console.log(declaredVariable);
+
+let globalVariable;
+
+function hoisting() {
+    globalVariable = 50;
+
+    var confinedVariable = 100;
 }
 
-getMysteryNumber();
+hoisting();
 
-// What will happen is that the first chooseMystery() that returns 12 will get hoisted to the top
-// Then the second chooseMystery() that returns the 7 will hoist next - and override the first function with its value
-// resulting in a return value of 7.
+console.log(globalVariable); // 50
 
+// console.log(confinedVariable); // ReferenceError: confinedVariable is not defined
 
-///////////////
+// global variables
+                    // variable hoist is declared and move to the top resulting in being
+console.log(hoist); // undefined
 
-// Function expressions are never hoisted! They are treated as assignments.
+var hoist = 'It is hoisted!';
 
-function getPysteryNumber() {
-
-    var choosePystery = function () {
-            return 12;
-    }
-
-    return choosePystery();
-
-    var choosePystery = function () {
-            return 7;
-    }
-}
-
-getPysteryNumber();
-
-// What will happen is that the first variable var choosePystery will get hoisted to the top as undefined.
-// Then the second variable will get hoisted to the top as undefined and overrride the first variable
-// the first choosePystery = function returning 12 will execute/
-// then return choosePystery(); will return that value (12)
-// resulting in the second choosePystery = function returning the value 7 to be unreachable!
-
-//////////////////
-
-function getPysteryNumber() {
-
-    return choosePystery();
-
-    var choosePystery = function () {
-        return 12;
-    }
-
-    var choosePystery = function () {
-        return 7;
-    }
-}
-
-getPysteryNumber();
-
-// What will happen is that the first variable var choosePystery will get hoisted to the top as undefined.
-// Then the second variable will get hoisted to the top as undefined and overrride the first variable.
-// return choosePystery(); will be called.
-// and return the variable which at this point is undefined
-// resulting in an error.
+// function scoped
 
 
 
-// Declared functions over function expression
+
