@@ -58,9 +58,9 @@ var user = {
 
     clickHandler: function () {
         var that = this; // maintaining this inside anonymous functions
-        this.data.forEach(function (person) { // this" refers to the user object so the data property works
+        this.data.forEach(function (person) { // this" refers to the user {} so the data property works
             console.log("What is This referring to?" + this);
-            // "this" no longer refers to the user object...
+            // "this" no longer refers to the user {}...
             // console.log(person.name + " is fighting at " + this.tournament); // undefined - this variable is accessible only by the function itself, not by inner functions
             console.log(person.name + " is fighting at " + that.tournament);
         })
@@ -70,6 +70,7 @@ var user = {
 user.clickHandler();
 
 // this and method assigned to a variable
+// data variable is a global variable
 var data = [
     {name: 'A. Smith', age: 2000},
     {name: 'Neo', age: 32}
@@ -77,21 +78,24 @@ var data = [
 ];
 
 var user2 = {
-    data: [
-        {name: '', age: 37},
-        {name: 'pippi', age: 22}
+    data: [ // property of user2 {}
+        {name: 'Bruce Lee', age: 37},
+        {name: 'Tony Jaa', age: 22}
     ],
     showData: function(event) {
-        var randomNumber = ((Math.random() * 2 | 0) + 1) -1;
+        var randomNumber = ((Math.random() * 2 | 0) + 1) -1; // 0 || 1
 
         console.log(this.data[randomNumber].name + " " + this.data[randomNumber].age);
     }
 };
 
-// var showUserData = user2.showData(user2);
-var showUserData = user2.showData.bind(user2);
+// if we do the following:
+// var showUserData1 = user2.showData(user2);
+// showUserData1(); // we wil still get values from the global data [], not from the data [] in the user2 {}
 
-showUserData();
+// to avoid this, we can specifically set the this value with the bind method
+var showUserData2 = user2.showData.bind(user2);
+showUserData2(); // the value from the user2 {}, because this is bound to the user2 {}
 
 
 // this when borrowing methods
@@ -125,64 +129,71 @@ appController.average.apply(gameController, gameController.scores);
 console.log(gameController.averageScore); // 11.6
 console.log(appController.averageScore); // null
 
+// delete - removes a property from an object
+var fighter = {
+    firstname: "Bruce",
+    lastname: "Lee"
+}
 
+console.log(fighter.firstname); // output: "Bruce"
 
+delete fighter.firstname;
 
+console.log(fighter.firstname); // undefined
 
+// if property does not exist, delete will not have any effect and will return true
+console.log(delete fighter.firstname); // true
 
+var name = 'XYZ';
 
+// We can access this global property using:
+// Object.getOwnPropertyDescriptor(window, 'name');
 
+// output: Object {value: "XYZ",
+//                  writable: true,
+//                  enumerable: true,
+//                  configurable: false}
 
+// Since "name" is added using with the
+// var keyword, it is marked as "non-configurable"
+// this applies to let and const as well
 
+// console.log(delete name);   // return false
 
+// creates the property adminName on the global scope
+adminName = 'xyz';
 
+// creates the property fighterCount on the global scope
+// Since we are using var, this is marked as non-configurable. The same is true of let and const.
+var fighterCount = 43;
 
+fighterDetails = {
+    name: 'Bruce Lee',
+    age: 32,
+    occupation: 'Martial Artist'
+};
 
+// adminName is a property of the global scope.
+// It can be deleted since it is created without var.
+// Therefore, it is configurable.
+console.log(delete adminName);       // returns true
 
+// since var was used.
+// fighterCount is not configurable and cannot be deleted
+console.log(delete fighterCount);       // returns false
 
+// delete can be used to remove properties from objects
+console.log(delete fighterDetails.name); // returns true
 
+// Even when the property does not exists, it returns "true"
+console.log(delete fighterDetails.speed); // returns true
 
+// delete does not affect built-in static properties
+console.log(delete Math.PI); // returns false
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// delete
+// fighterDetails is a property of the global scope.
+// Since it defined without "var", it is marked configurable
+console.log(delete fighterDetails);   // returns true
 
 // typeof
 
