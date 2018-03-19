@@ -195,12 +195,107 @@ console.log(delete Math.PI); // returns false
 // Since it defined without "var", it is marked configurable
 console.log(delete fighterDetails);   // returns true
 
-// typeof
+// typeof - returns a string indicating the type of the unevaluated operand.
+console.log(typeof 'this is a string');
+// expected output: "string"
 
-// instance
+console.log(typeof 5);
+// output: "number"
 
-// new
+console.log(typeof false);
+// output: "boolean"
+
+console.log(typeof declaredVariable);
+// output: "undefined";
+
+console.log(typeof null);
+// output: "object"
+
+// All constructor functions while instantiated with 'new' keyword will always be typeof 'object'
+var str = new String('String');
+var num = new Number(50);
+
+console.log(typeof str); // 'object'
+console.log(typeof num); // 'object'
+
+// Function constructor of Javascript
+
+var func = new Function();
+
+console.log(func); // 'function'
+
+// instanceof - returns whether the prototype property of a constructor appears anywhere in the prototype chain of an object.
+var str = 'This is a string';
+var myStr = new String();
+var newStr = new String('String created with constructor');
+var myDate = new Date();
+var myObj = {};
+
+console.log(str instanceof String); // returns false, checks the prototype chain, finds undefined
+console.log(str instanceof Object); // returns false
+console.log(myStr instanceof String); // returns true
+console.log(newStr instanceof String); // returns true
+
+console.log(myObj instanceof Object);    // returns true, despite an undefined prototype
+console.log(({})  instanceof Object);    // returns true, same case as above
+
+console.log(myStr instanceof Date);   // returns false
+
+console.log(myDate instanceof Date);     // returns true
+console.log(myDate instanceof Object);   // returns true
+console.log(myDate instanceof String);   // returns false
+
+
+function Car(make, model, year, owner) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.owner = owner;
+}
+var myCar = new Car('Toyota', 'Supra', 1998);
+var supra1 = myCar instanceof Car;
+console.log(supra1); // returns true
+
+var supra2 = myCar instanceof Object;
+console.log(supra2); // returns true
+
+// new - creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function.
+function Owner(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+var firstOwner = new Owner('Surge', 27);
+var skyline = new Car('Nissan', 'R34', 1998, firstOwner);
+var nsx = new Car('Acura', 'NSX', 2005, firstOwner);
+
+console.log(firstOwner.name + " owns the " + skyline.model);
+console.log(firstOwner.name + " owns the " + nsx.model);
 
 // super
 
-// in
+// in - returns true if the specified property is in the specified object or its prototype chain.
+
+// Arrays
+var vehicles = ['Honda', 'Nissan', 'Toyota', 'Ford', 'Dodge'];
+0 in vehicles        // returns true
+3 in vehicles        // returns true
+6 in vehicles        // returns false
+'bay' in vehicles    // returns false (you must specify the
+                  // index number, not the value at that index)
+'length' in vehicles // returns true (length is an Array property)
+Symbol.iterator in vehicles // returns true (arrays are iterable
+
+// Predefined objects
+'PI' in Math          // returns true
+
+// Custom objects
+var mycar = {make: 'Honda', model: 'Civic', year: 2018};
+console.log('make' in mycar);  // returns true
+console.log('model' in mycar); // returns true
+
+delete mycar.model;
+console.log('model' in mycar);  // returns false
+
+mycar.make = undefined;
+console.log('make' in mycar);  // returns true
